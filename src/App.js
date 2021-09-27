@@ -38,10 +38,14 @@ class App extends React.Component {
 
                 </Route>
 
+
+                
+
             </Switch>
             <Footer />
           {/* </IsLoadingAndError> */}
         </Router>
+          
       </>
     );
   }
