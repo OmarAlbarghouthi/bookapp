@@ -1,8 +1,9 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Jumbotron from 'react-bootstrap/Jumbotron';
+import Carousel from 'react-bootstrap/Carousel';
 import './BestBooks.css';
 import axios from 'axios';
+import { withAuth0 } from "@auth0/auth0-react";
 
 class MyFavoriteBooks extends React.Component {
 
@@ -13,29 +14,56 @@ class MyFavoriteBooks extends React.Component {
     }
   }
 
-  didMount = async () => {
-    
-    let serverUrl = `${process.env.REACT_APP_SERVER}/books`;
-    let booksData = await axios.get(serverUrl)
+  componentDidMount = () => {
+    let email = this.props.user.email;
+    let serverUrl = `${process.env.REACT_APP_SERVER}/books?email=${email}`;
 
-    this.setState({
-      books: booksData.data
-      
+    axios.get(serverUrl).then((booksData) => {
+      console.log(booksData);
+
+      this.setState({
+        books: booksData.data
+
+      })
     })
-    
+
+
+
+
   }
 
 
   render() {
-    return(
-      <Jumbotron>
+    return (
+      <>
         <h1>My Favorite Books</h1>
         <p>
           This is a collection of my favorite books
         </p>
-      </Jumbotron>
+        <Carousel>
+        {this.state.books.length>0&&this.state.books.map(item => {
+          return (
+            <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src="https://www.glorify.com/wp-content/uploads/2020/12/contemporary-fiction-night-time-book-cover-design-template-1be47835c3058eb42211574e0c4ed8bf_screen.jpg"
+              alt="First slide"
+            />
+            <Carousel.Caption>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          )
+
+        })}
+         
+        </Carousel>
+        
+
+      </>
     )
   }
 }
 
-export default MyFavoriteBooks;
+export default withAuth0(MyFavoriteBooks);
