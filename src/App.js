@@ -29,7 +29,7 @@ class App extends React.Component {
               <Route exact path="/">
                 {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
 
-                {isAuthenticated ? <BestBooks/> : <LoginButton/>}
+                {isAuthenticated ? <BestBooks user={this.props.auth0.user}/> : <LoginButton/>}
               </Route>
               {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
               <Route exact path="/Profile">
