@@ -40,30 +40,34 @@ class MyFavoriteBooks extends React.Component {
         <p>
           This is a collection of my favorite books
         </p>
-        <Carousel>
-        {this.state.books.length>0&&this.state.books.map(item => {
-          return (
-            <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="https://www.glorify.com/wp-content/uploads/2020/12/contemporary-fiction-night-time-book-cover-design-template-1be47835c3058eb42211574e0c4ed8bf_screen.jpg"
-              alt="First slide"
-            />
-            <Carousel.Caption>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          )
 
-        })}
-         
-        </Carousel>
         
+          
+           
+            <Carousel>
+              {this.state.books.length > 0 && this.state.books.map(item => {
+                return (
+                  <Carousel.Item>
+                    <img
+                      className="d-block w-100"
+                      src="https://www.glorify.com/wp-content/uploads/2020/12/contemporary-fiction-night-time-book-cover-design-template-1be47835c3058eb42211574e0c4ed8bf_screen.jpg"
+                      alt="First slide"
+                    />
+                    <Carousel.Caption>
+                      <h3>{item.title}</h3>
+                      <p>{item.description}</p>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                )
 
-      </>
-    )
+              })}
+
+            </Carousel>
+
+
+          </>
+        )  
   }
 }
 
-export default withAuth0(MyFavoriteBooks);
+          export default withAuth0(MyFavoriteBooks);
