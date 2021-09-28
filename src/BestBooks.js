@@ -4,6 +4,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import './BestBooks.css';
 import axios from 'axios';
 import { withAuth0 } from "@auth0/auth0-react";
+import Form from './components/Form';
 
 class MyFavoriteBooks extends React.Component {
 
@@ -32,6 +33,11 @@ class MyFavoriteBooks extends React.Component {
 
   }
 
+//   addBook = (event) =>{
+// event.preventDefault;
+
+//   }
+
 
   render() {
     return (
@@ -41,9 +47,9 @@ class MyFavoriteBooks extends React.Component {
           This is a collection of my favorite books
         </p>
 
-        
-          
-           
+           {/* <Form
+           addBookFunc = {this.addBook}
+           /> */}
             <Carousel>
               {this.state.books.length > 0 && this.state.books.map(item => {
                 return (
@@ -63,6 +69,7 @@ class MyFavoriteBooks extends React.Component {
               })}
 
             </Carousel>
+
 
 
           </>
